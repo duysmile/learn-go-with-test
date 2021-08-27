@@ -19,6 +19,14 @@ type SpyTime struct {
 	durationSlept time.Duration
 }
 
+func (s *SpyTime) Sleep(duration time.Duration) {
+	s.durationSlept = duration
+}
+
+type SpyCountdownOperations struct {
+	Calls []string
+}
+
 func (s *SpyCountdownOperations) Sleep() {
 	s.Calls = append(s.Calls, sleep)
 }
@@ -26,10 +34,6 @@ func (s *SpyCountdownOperations) Sleep() {
 func (s *SpyCountdownOperations) Write(p []byte) (n int, err error) {
 	s.Calls = append(s.Calls, write)
 	return
-}
-
-func (s *SpyTime) Sleep(duration time.Duration) {
-	s.durationSlept = duration
 }
 
 func TestCountdown(t *testing.T) {

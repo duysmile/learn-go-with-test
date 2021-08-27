@@ -16,10 +16,6 @@ type Sleeper interface {
 	Sleep()
 }
 
-type SpyCountdownOperations struct {
-	Calls []string
-}
-
 type ConfigurableSleeper struct {
 	duration time.Duration
 	sleep    func(time.Duration)
